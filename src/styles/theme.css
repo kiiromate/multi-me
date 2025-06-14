@@ -1,0 +1,22 @@
+:root {
+  --background: theme('colors.background.DEFAULT');
+  --foreground: theme('colors.foreground.DEFAULT');
+  --accent: theme('colors.accent.DEFAULT');
+}
+
+html,
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.5s, color 0.5s;
+}
+
+html.light {
+  --background: theme('colors.background.light');
+  --foreground: theme('colors.background.DEFAULT');
+}
+
+html.dark {
+  --background: theme('colors.background.DEFAULT');
+  --foreground: theme('colors.foreground.DEFAULT');
+} 

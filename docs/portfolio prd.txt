@@ -1,0 +1,173 @@
+{
+  "productRequirementDocument": {
+    "title": "Personal Portfolio Website - Project Kaze (Internal Codename)",
+    "version": "1.0",
+    "date": "2023-10-27",
+    "author": "AI Product Manager (based on user specifications)",
+    "documentStatus": "Draft",
+    "stakeholders": ["Project Owner (You)"],
+    "sections": [
+      {
+        "id": "introduction",
+        "title": "1. Introduction & Overview",
+        "content": [
+          "This document outlines the requirements for a personal portfolio website designed to showcase the owner's creative and technical skills, particularly in data storytelling, frontend development, and design.",
+          "The portfolio aims to be a visually engaging, interactive, and performant experience that expresses a unique voice: thoughtful, intentional, and human. It will serve as a testament to the owner's passion for innovation, sustainability, and technology.",
+          "The core aesthetic is inspired by Dieter Rams' principles ('Less, but better'), blending minimalism with rich, ambient animations and a sophisticated monochromatic palette accented by a signature color. The goal is a 'cracked' UI/UX – meticulously crafted, highly polished, and exceptionally executed."
+        ]
+      },
+      {
+        "id": "goals_objectives",
+        "title": "2. Goals & Objectives",
+        "content": [
+          { "type": "goal", "statement": "To create a compelling digital presence that effectively showcases the owner's skills, projects, and thought leadership in data visualization, web development, and design." },
+          { "type": "goal", "statement": "To attract potential employers, collaborators, and clients by demonstrating a high level of technical proficiency and design sensibility." },
+          { "type": "goal", "statement": "To express the owner's unique voice and perspective on innovation, sustainability, and technology through carefully curated content and design." },
+          { "type": "goal", "statement": "To build a performant, accessible, and maintainable website that serves as a long-term platform for personal branding and content sharing." },
+          { "type": "objective", "statement": "Develop a visually distinct and memorable brand identity through a unique combination of minimalism, animation, and interactivity." },
+          { "type": "objective", "statement": "Implement a seamless user experience across all devices, with intuitive navigation and clear content presentation." },
+          { "type": "objective", "statement": "Integrate a headless CMS (Sanity.io) for efficient content management and scalability." },
+          { "type": "objective", "statement": "Achieve Lighthouse scores of 90+ for Performance, Accessibility, Best Practices, and SEO." }
+        ]
+      },
+      {
+        "id": "target_audience",
+        "title": "3. Target Audience",
+        "content": [
+          { "persona": "Hiring Managers / Recruiters", "needs": ["Quickly assess skills and experience.", "View relevant projects with clear outcomes.", "Understand technical proficiency.", "Gauge personality and work ethic."] },
+          { "persona": "Potential Collaborators / Clients", "needs": ["See examples of work quality and style.", "Understand the owner's approach and design philosophy.", "Easily initiate contact.", "Gauge fit for potential projects."] },
+          { "persona": "Industry Peers / Community", "needs": ["Engage with thoughtful content.", "Discover new perspectives and insights.", "Appreciate innovative design and technical execution."] }
+        ]
+      },
+      {
+        "id": "design_principles",
+        "title": "4. Guiding Design & UX Principles (Dieter Rams Inspired)",
+        "content": [
+          { "principle": "Good design is innovative", "application": "Subtle, forward-thinking elements like ambient animations, seamless transitions, and responsive layouts that feel modern but never flashy. Push boundaries through implementation excellence (performance optimization, fluid animations, smart layout adaptation), not visual overload." },
+          { "principle": "Good design makes a product understandable", "application": "Clarity rules. Buttons, navigation, case studies should be self-evident. Hover effects, iconography (with tooltips if ambiguous), and CTAs guide, not confuse. No cryptic icons or abstract menu structures." },
+          { "principle": "Good design is unobtrusive", "application": "Content is king. UI elements (navigation, modals, cards) support user interaction with content, not draw attention to themselves. Background animations are ambient, not distracting." },
+          { "principle": "Good design is honest", "application": "Avoid 'dark UX.' No hidden elements behind unnecessary clicks, no visual tricks. Forms clearly indicate submission status. Modals are non-trapping. Trust-building design." },
+          { "principle": "Good design is thorough down to the last detail", "application": "Every interaction feels intentional. Spacing, padding, font weights, icon alignment – nothing default or 'just working.' Polish micro-interactions and transitions. The site feels sharp, well-oiled, and crafted to the pixel ('cracked')." }
+        ]
+      },
+      {
+        "id": "key_features_user_stories",
+        "title": "5. Key Features & User Stories",
+        "userStories": [
+          { "as": "A visitor", "iWantTo": "experience a unique and memorable loading animation when I first land on the site", "soThat": "I am immediately engaged and perceive a high level of craft." },
+          { "as": "A visitor", "iWantTo": "easily toggle between a light (daytime) and dark (night) theme", "soThat": "I can view the site in my preferred mode, with a smooth animated transition between themes." },
+          { "as": "A visitor", "iWantTo": "see subtle, ambient background animations that change based on the section of the site I'm viewing (Homepage, Blog, Projects)", "soThat": "the experience feels dynamic and tailored, without distracting from the content." },
+          { "as": "A visitor", "iWantTo": "view content on containers that have a slight blur/translucent effect over the animated background", "soThat": "content is legible and feels 'lifted' off the dynamic background." },
+          { "as": "A visitor", "iWantTo": "navigate the site intuitively using a clear header on desktop and a clean, full-screen overlay menu on mobile", "soThat": "I can easily find what I'm looking for." },
+          { "as": "A visitor", "iWantTo": "view a homepage (Hero section) with a distinct, captivating generative art animation", "soThat": "I get a strong first impression of the owner's creativity." },
+          { "as": "A visitor", "iWantTo": "browse a list of projects with clear thumbnails and summaries", "soThat": "I can quickly identify projects of interest." },
+          { "as": "A visitor", "iWantTo": "view individual project pages with detailed descriptions, images, and potentially embedded data visualizations or links to live demos", "soThat": "I can understand the scope and impact of the owner's work." },
+          { "as": "A visitor", "iWantTo": "read blog posts with excellent typography, syntax-highlighted code blocks, and embedded interactive data visualizations", "soThat": "I can engage with the owner's insights and technical knowledge." },
+          { "as": "A visitor", "iWantTo": "experience smooth scroll-based animations and delightful micro-interactions (hover effects, focus states)", "soThat": "the site feels polished and responsive to my actions." },
+          { "as": "A visitor with prefers-reduced-motion enabled", "iWantTo": "experience a version of the site with minimal or no distracting animations", "soThat": "I can comfortably access the content." },
+          { "as": "The site owner", "iWantTo": "easily create, update, and manage blog posts, project details, and site settings using a headless CMS (Sanity.io)", "soThat": "I can keep my portfolio current without needing to redeploy code for content changes." },
+          { "as": "The site owner", "iWantTo": "embed custom interactive data visualizations within my blog posts or project pages using data from the CMS", "soThat": "I can effectively tell stories with data." },
+          { "as": "The site owner", "iWantTo": "have automatically generated sitemap and SEO-optimized metadata for all pages", "soThat": "my portfolio is discoverable by search engines." }
+        ]
+      },
+      {
+        "id": "technical_specifications",
+        "title": "6. Technical Specifications",
+        "subsections": [
+          {
+            "id": "frontend_tech",
+            "title": "6.1. Frontend",
+            "points": [
+              "Framework: Next.js 13+ (App Router)",
+              "Language: TypeScript",
+              "Styling: Tailwind CSS (JIT enabled) with CSS Custom Properties for theming.",
+              "Animation: GSAP (core transitions, loading, theme switch), Framer Motion (UI interactions, scroll animations), react-p5 (generative art backgrounds, hero, loader), @react-three/fiber & @react-three/drei (Projects page 3D node map).",
+              "State Management: React Context API (for ThemeProvider), component-level state.",
+              "Data Fetching: Next.js Server Components, Route Handlers, or SWR/React Query if client-side fetching is extensive (primarily for Sanity).",
+              "Component Library: Lucide React for icons.",
+              "Data Visualization: Recharts for embeddable charts.",
+              "Linting/Formatting: ESLint, Prettier, Husky, lint-staged.",
+              "Key Pages/Sections: Homepage (with unique hero animation), Blog (listing & individual posts), Projects (listing & individual pages), About (optional, TBD).",
+              "Theming: Dual theme (light/dark) with GSAP-animated circular wipe transition. Stored in localStorage.",
+              "Responsive Design: Mobile-first, fully responsive across all standard breakpoints. Mobile navigation: Hamburger icon -> full-screen overlay menu (animated slide/fade).",
+              "Content Blur: `backdrop-filter: blur()` on content containers over canvas backgrounds. Subtle glassmorphism effect (e.g., `blur(10px)` main, `blur(15px)` overlays), animated on mount/scroll.",
+              "Micro-interactions: Subtle scale-ups (`1.02`), fade-in underlines/accents on hover. Magnetic hover for project thumbnails. Clear focus states (softened glow/box-shadow with accent). Modals slide/fade with spatiality. Form field errors animate gently."
+            ]
+          },
+          {
+            "id": "backend_tech",
+            "title": "6.2. Backend (Headless CMS - Sanity.io)",
+            "points": [
+              "Platform: Sanity.io",
+              "Schemas:",
+              "  - `post`: title, slug, publishedAt, excerpt, mainImage (hotspot enabled), body (Portable Text with custom blocks), SEO fields (seoTitle, seoDescription, seoImage).",
+              "  - `project`: title, slug, date, excerpt, mainImage, detailedDescription (Portable Text), technologiesUsed (array of strings/tags), liveUrl, repoUrl, gallery (array of images), SEO fields.",
+              "  - `dataVisualization` (custom Portable Text block): title, chartType (select: bar, line, pie), data (JSON text input), caption.",
+              "  - `siteSettings` (Singleton, optional): For global elements like SEO defaults, social links.",
+              "Portable Text Features: Standard text blocks, images, custom `code` block (with `react-syntax-highlighter`), custom `dataVisualization` block.",
+              "Image Handling: `@sanity/image-url` for optimized image transformations.",
+              "Preview: Sanity Studio with Next.js Draft Mode integration for live previews.",
+              "Deployment: Sanity Studio hosted on Sanity's platform or custom domain."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "content_strategy",
+        "title": "7. Content Strategy & Tone",
+        "content": [
+          "Voice & Tone: Confident, warm, curious, thoughtful, intentional, human. Write like you speak.",
+          "Blog Posts: Medium-depth, visually-supported pieces revealing systems, strategy, or lessons learned. Themes: innovation, sustainability, tech. Not frequent updates, but carefully crafted thought leadership. End posts with a question/takeaway.",
+          "Project Descriptions: Clearly articulate the problem, solution, your role, technologies used, and impact. Visually supported.",
+          "SEO: Use natural language with semantic alternatives. Dynamic meta tags via Next.js metadata API. Structured data (JSON-LD)."
+        ]
+      },
+      {
+        "id": "non_functional_requirements",
+        "title": "8. Non-Functional Requirements",
+        "content": [
+          { "requirement": "Performance", "details": "Fast load times (LCP < 2.5s). Smooth animations (60fps where applicable, 30fps for ambient backgrounds). Optimized assets. Efficient code splitting. Lighthouse Performance score 90+." },
+          { "requirement": "Accessibility (A11y)", "details": "WCAG 2.1 AA compliance. Full keyboard navigability. Clear focus states. Semantic HTML. ARIA attributes where necessary. Support for `prefers-reduced-motion` (disable auto-animations, replace with fades, blur remains static). Sufficient color contrast. Lighthouse Accessibility score 90+." },
+          { "requirement": "Responsiveness", "details": "Flawless display and functionality on all common device sizes (mobile, tablet, desktop, large desktop)." },
+          { "requirement": "Browser Compatibility", "details": "Latest two versions of major browsers (Chrome, Firefox, Safari, Edge)." },
+          { "requirement": "Maintainability", "details": "Clean, well-documented, modular code. Consistent coding standards. Easy to update content via Sanity." },
+          { "requirement": "Security", "details": "Basic web security best practices (HTTPS, XSS prevention for any user input if applicable, though primarily static from CMS). No sensitive data stored." },
+          { "requirement": "Fallback for JS Disabled", "details": "Monochromatic gradient background, static content sections. Site remains readable and navigable." }
+        ]
+      },
+      {
+        "id": "success_metrics",
+        "title": "9. Success Metrics",
+        "content": [
+          { "metric": "User Engagement", "kpi": "Average time on page, bounce rate, pages per session (via Vercel Analytics/GA4)." },
+          { "metric": "Qualitative Feedback", "kpi": "Positive comments/messages received regarding the portfolio's design, content, and user experience." },
+          { "metric": "Opportunities Generated", "kpi": "Number of inquiries from potential employers, clients, or collaborators." },
+          { "metric": "Technical Performance", "kpi": "Lighthouse scores consistently above 90 for Performance, Accessibility, Best Practices, SEO." },
+          { "metric": "Content Freshness", "kpi": "Regularly updated blog and project sections (e.g., at least 1 new piece of content per quarter after launch)." },
+          { "metric": "Personal Satisfaction", "kpi": "Owner feels the portfolio accurately and impressively represents their skills and brand." }
+        ]
+      },
+      {
+        "id": "future_considerations",
+        "title": "10. Future Considerations / Roadmap (Post-MVP)",
+        "content": [
+          "Enhanced interactive data visualizations using D3.js or other advanced libraries, potentially driven by real-time data.",
+          "Integration of a newsletter subscription.",
+          "Search functionality for blog posts.",
+          "More sophisticated 3D interactions or scenes.",
+          "Internationalization (i18n) if target audience expands globally.",
+          "E-commerce functionality for selling prints or digital assets (if applicable)."
+        ]
+      },
+      {
+        "id": "open_questions",
+        "title": "11. Open Questions",
+        "content": [
+          "Specific font licensing for Helvetica Neue / Akzidenz-Grotesk to be confirmed; otherwise, proceed with modern alternatives like Manrope or Satoshi for headings.",
+          "Final decision on specific imagery for static blurred blog background.",
+          "Detailed content for About page, if one is to be included."
+        ]
+      }
+    ]
+  }
+}
