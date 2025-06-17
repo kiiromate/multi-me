@@ -6,9 +6,10 @@ export default function LoaderAnimation() {
   const sketchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const p5 = require("p5");
+    // Use the imported p5Types directly as the constructor
     const sketch = (s: p5Types) => {
-      let n = 36, t = 0;
+      const n = 36; // Changed to const
+      let t = 0; // t is reassigned, so it stays let
       s.setup = () => {
         const canvas = s.createCanvas(300, 300);
         if (sketchRef.current) {
@@ -34,8 +35,11 @@ export default function LoaderAnimation() {
         t++;
       };
     };
-    const p5Instance = new p5(sketch);
-    return () => p5Instance.remove();
+
+    const p5Instance = new p5Types(sketch);
+    return () => {
+      p5Instance.remove();
+    };
   }, []);
 
   return (

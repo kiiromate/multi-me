@@ -15,8 +15,7 @@ export default defineType({
       title: 'title',
       chartType: 'chartType',
     },
-    // @ts-ignore
-    prepare(selection) {
+    prepare(selection: { title?: string; chartType?: string }) {
       const { title, chartType } = selection
       return {
         title: title || 'Data Visualization',

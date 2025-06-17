@@ -16,9 +16,10 @@ const config: Config = {
           DEFAULT: '#fafafa', // main text
           subtle: '#a1a1aa', // subtle text
         },
+        honey: '#FFB000', // Define honey color
         // Signature accent color (e.g., blue-violet)
         accent: {
-          DEFAULT: '#7c3aed', // signature accent
+          DEFAULT: 'var(--color-honey)', // Reference honey color
           light: '#a78bfa',
           dark: '#4c1d95',
         },

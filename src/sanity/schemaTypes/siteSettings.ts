@@ -1,12 +1,11 @@
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType, type Rule } from 'sanity'
 
 export default defineType({
   name: 'siteSettings',
   title: 'Site Settings',
   type: 'document',
   fields: [
-    // @ts-ignore
-    defineField({ name: 'title', title: 'Site Title', type: 'string', validation: Rule => Rule.required() }),
+    defineField({ name: 'title', title: 'Site Title', type: 'string', validation: (Rule: Rule) => Rule.required() }),
     defineField({ name: 'description', title: 'Description', type: 'text' }),
     defineField({
       name: 'socialLinks',

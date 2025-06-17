@@ -1,16 +1,13 @@
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType, type Rule } from 'sanity'
 
 export default defineType({
   name: 'project',
   title: 'Project',
   type: 'document',
   fields: [
-    // @ts-ignore
-    defineField({ name: 'title', title: 'Title', type: 'string', validation: Rule => Rule.required() }),
-    // @ts-ignore
-    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title', maxLength: 96 }, validation: Rule => Rule.required() }),
-    // @ts-ignore
-    defineField({ name: 'date', title: 'Date', type: 'datetime', validation: Rule => Rule.required() }),
+    defineField({ name: 'title', title: 'Title', type: 'string', validation: (Rule: Rule) => Rule.required() }),
+    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title', maxLength: 96 }, validation: (Rule: Rule) => Rule.required() }),
+    defineField({ name: 'date', title: 'Date', type: 'datetime', validation: (Rule: Rule) => Rule.required() }),
     defineField({ name: 'excerpt', title: 'Excerpt', type: 'text' }),
     defineField({ name: 'mainImage', title: 'Main image', type: 'image', options: { hotspot: true } }),
     defineField({ name: 'detailedDescription', title: 'Detailed Description', type: 'array', of: [{ type: 'block' }, { type: 'image' }, { type: 'dataVisualization' }] }),

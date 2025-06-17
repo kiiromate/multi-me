@@ -9,7 +9,7 @@ export default function LogoAnimation() {
   const isBlackOnWhite = theme === "light";
 
   useEffect(() => {
-    const p5 = require("p5");
+    // const p5 = require("p5"); // Removed require
     const sketch = (s: p5Types) => {
       s.setup = () => {
         const canvas = s.createCanvas(400, 400);
@@ -46,7 +46,7 @@ export default function LogoAnimation() {
       };
     };
 
-    const p5Instance = new p5(sketch);
+    const p5Instance = new p5Types(sketch); // Used p5Types as constructor
     return () => p5Instance.remove();
   }, [isBlackOnWhite, toggleTheme]);
 

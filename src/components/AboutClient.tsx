@@ -15,7 +15,7 @@ export default function AboutClient() {
         <GlassContainer>
           <h1 className="text-4xl font-bold mb-8">About Me</h1>
           <div className="prose prose-lg max-w-none">
-            {aboutMe}
+            <p>{aboutMe.bio}</p>
           </div>
         </GlassContainer>
       </div>

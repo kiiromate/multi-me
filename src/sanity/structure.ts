@@ -1,7 +1,6 @@
-import { StructureResolver } from 'sanity/desk'
+import { type StructureResolver, type StructureBuilder } from 'sanity/desk'
 
-// @ts-ignore - Using any type for Sanity structure
-export const structure: StructureResolver = (S) =>
+export const structure: StructureResolver = (S: StructureBuilder) =>
   S.list()
     .title('Content')
     .items([
