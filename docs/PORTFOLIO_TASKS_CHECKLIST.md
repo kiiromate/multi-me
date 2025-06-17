@@ -91,7 +91,7 @@ This checklist is inspired by Taskmaster methodology. Each task is atomic, actio
   - _Description:_ Add dynamic meta tags, Open Graph, and sitemap generation.
   - _Test:_ Pages have correct metadata; sitemap is accessible.
 
-- [ ] **Accessibility & Reduced Motion Support**
+- [x] **Accessibility & Reduced Motion Support**
   - _Description:_ Ensure WCAG 2.1 AA compliance, keyboard navigation, and support for `prefers-reduced-motion`.
   - _Test:_ Passes Lighthouse Accessibility; animations reduce as expected.
 
@@ -101,14 +101,41 @@ This checklist is inspired by Taskmaster methodology. Each task is atomic, actio
 
 ---
 
-## 8. Deployment & Analytics
-- [ ] **Deploy to Vercel (or preferred host)**
-  - _Description:_ Set up CI/CD, environment variables, and custom domain.
-  - _Test:_ Site is live, secure (HTTPS), and updates on push.
+## 8. V0 Design System Integration
+- [x] **Initialize Shadcn/UI**
+  - _Description:_ Set up `shadcn/ui` to manage and add new components from V0 and the component library.
+  - _Test:_ `components.json` is created and `shadcn` commands work.
+  - _Log:_ Successfully initialized `shadcn/ui`, which created `components.json` and `lib/utils.ts`.
 
-- [ ] **Set Up Analytics (Vercel/GA4)**
-  - _Description:_ Integrate analytics to track engagement and performance.
-  - _Test:_ Analytics dashboard receives data.
+- [x] **Import and Integrate V0 Design System**
+  - _Description:_ Run the `shadcn add` command with the V0 URL to import the complete design system, including components, styles, and layouts. Used `--overwrite` to ensure all files were updated.
+  - _Test:_ New components and files from V0 are present in the codebase.
+  - _Log:_ Imported a comprehensive set of components, including a new header, footer, cards, blog layouts, and accessibility features.
+
+- [x] **Resolve File Conflicts and Consolidate Components**
+  - _Description:_ Identified and resolved conflicts between existing components and new V0 components (e.g., `Header.tsx`, `ProjectCard.tsx`).
+  - _Test:_ Duplicate files are removed, and the project uses a single, consistent set of components.
+  - _Log:_ Deleted older versions of `ThemeToggle`, `ThemeProvider`, and `ProjectCard`. The new V0 components are now the standard.
+
+- [x] **Adapt V0 Components to Existing Data Structures**
+  - _Description:_ Modified the V0 `project-card` and `blog-card` to accept props from the existing data structures in `src/data/`.
+  - _Test:_ The new cards render correctly with data from `projects.ts` and `blogPosts.ts`.
+  - _Log:_ Updated `project-card.tsx` and `blog-card.tsx` to align with existing data interfaces, ensuring a seamless data flow.
+
+- [x] **Refactor Pages to Use New Design System**
+  - _Description:_ Updated `HomeClient`, `ProjectsClient`, `BlogClient`, and `AboutClient` to use the new V0 layout components like `Header`, `Footer`, `ContentGrid`, and `GlassCard`.
+  - _Test:_ All pages render with the new, consistent design system.
+  - _Log:_ Replaced old layout containers and components with the new V0 system across all main pages.
+
+- [x] **Fix CSS Linting Issues**
+  - _Description:_ Addressed CSS linting errors in `globals.css` that arose from the V0 import.
+  - _Test:_ CSS linting passes without critical errors.
+  - _Log:_ Fixed issues with `text-wrap` compatibility, invalid `space-x` property, and missing standard `line-clamp` properties.
+
+- [x] **Install Missing Dependencies**
+  - _Description:_ Identified and installed `tailwind-merge`, a missing dependency required by the new utility functions.
+  - _Test:_ The application compiles and runs without dependency-related errors.
+  - _Log:_ Installed `tailwind-merge` via npm.
 
 ---
 
