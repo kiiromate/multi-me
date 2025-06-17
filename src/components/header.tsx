@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { KazeLogo } from "./kaze-logo"
 import { Navigation } from "./navigation"
 import { MobileMenuTrigger } from "./mobile-menu-trigger"
-import { MobileMenuOverlay } from "./mobile-menu-overlay"
+import { EnhancedMobileMenu } from "./enhanced-mobile-menu"
 import { ThemeToggle } from "./theme-toggle"
 import Link from "next/link"
 
@@ -12,13 +12,21 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
-  // Handle scroll effect
+  // Enhanced scroll effect with better performance
   useEffect(() => {
+    let ticking = false
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 10)
+          ticking = false
+        })
+        ticking = true
+      }
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -42,11 +50,11 @@ export function Header() {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
+            {/* Enhanced Logo with better accessibility */}
             <Link
               href="/"
-              className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-accent-honey focus:ring-offset-2 focus:ring-offset-bg-primary rounded-lg"
-              aria-label="KAZE - Home"
+              className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-accent-honey focus:ring-offset-2 focus:ring-offset-bg-primary rounded-lg p-1 -m-1"
+              aria-label="KAZE - Return to homepage"
             >
               <KazeLogo className="w-8 h-8 text-text-primary group-hover:text-accent-honey transition-colors duration-200" />
               <span className="font-inter font-bold text-xl text-text-primary group-hover:text-accent-honey transition-colors duration-200">
@@ -54,14 +62,14 @@ export function Header() {
               </span>
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* Enhanced Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               <Navigation />
               <div className="w-px h-6 bg-text-secondary/20" />
               <ThemeToggle />
             </div>
 
-            {/* Mobile Menu Trigger */}
+            {/* Enhanced Mobile Menu Trigger */}
             <div className="md:hidden flex items-center space-x-4">
               <ThemeToggle />
               <MobileMenuTrigger 
@@ -73,8 +81,8 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile Navigation Overlay */}
-      <MobileMenuOverlay 
+      {/* Enhanced Mobile Navigation Overlay */}
+      <EnhancedMobileMenu 
         isOpen={isMobileMenuOpen} 
         onClose={closeMobileMenu} 
       />

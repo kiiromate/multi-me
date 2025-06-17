@@ -17,6 +17,7 @@ import {
   ResponsiveContainer
 } from "recharts"
 import { useTheme } from "../theme-provider"
+import { Download } from "lucide-react"
 
 // Sample data for demonstrations
 const sampleBarData = [
@@ -100,7 +101,7 @@ export function InteractiveBarChart({ data = sampleBarData }: { data?: any[] }) 
             {data.map((_, index) => (
               <Cell 
                 key={`cell-${index}`}
-                fill={activeIndex === index ? "#EBA937" : "#EBA937"}
+                fill="#EBA937"
                 fillOpacity={activeIndex === null || activeIndex === index ? 1 : 0.3}
                 style={{ transition: 'fill-opacity 0.3s ease' }}
               />
@@ -220,18 +221,27 @@ interface ChartWrapperProps {
 }
 
 export function ChartWrapper({ title, children, onExport }: ChartWrapperProps) {
+  const handleExport = () => {
+    // Simple export functionality - could be enhanced with actual chart export
+    if (onExport) {
+      onExport()
+    } else {
+      // Default export behavior
+      console.log(`Exporting chart: ${title}`)
+    }
+  }
+
   return (
     <div className="bg-bg-primary/60 backdrop-blur-md border border-text-secondary/10 rounded-xl p-6 my-8">
       <div className="flex justify-between items-center mb-4">
         <h3 className="font-inter font-semibold text-xl text-text-primary">{title}</h3>
-        {onExport && (
-          <button
-            onClick={onExport}
-            className="text-sm text-accent-honey hover:text-accent-honey/80 transition-colors duration-200"
-          >
-            Export
-          </button>
-        )}
+        <button
+          onClick={handleExport}
+          className="flex items-center gap-2 text-sm text-accent-honey hover:text-accent-honey/80 transition-colors duration-200"
+        >
+          <Download className="w-4 h-4" />
+          Export
+        </button>
       </div>
       {children}
     </div>

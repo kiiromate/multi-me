@@ -2,6 +2,8 @@ import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { EnhancedLoadingSystem } from "@/components/enhanced-loading-system"
+import { OfflineIndicator } from "@/components/enhanced-loading-system"
 
 export const metadata: Metadata = {
   title: "Portfolio Design System",
@@ -21,7 +23,10 @@ export default function RootLayout({
       </head>
       <body className="font-system antialiased">
         <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
-          {children}
+          <EnhancedLoadingSystem>
+            <OfflineIndicator />
+            {children}
+          </EnhancedLoadingSystem>
         </ThemeProvider>
       </body>
     </html>
