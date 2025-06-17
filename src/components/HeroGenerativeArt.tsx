@@ -1,7 +1,7 @@
 "use client"
 import dynamic from "next/dynamic"
-import { useTheme } from "./ThemeProvider"
-import React from "react"
+import { useTheme } from "./theme-provider"
+import React, { useRef, useEffect } from "react"
 
 const Sketch = dynamic(() => import("react-p5").then(mod => mod.default), { ssr: false })
 
@@ -29,8 +29,8 @@ export default function HeroGenerativeArt() {
       p5.push()
       p5.rotate(a)
       for (let i = 1; i > 0; i -= 0.005) {
-        let x = p5.noise(i - f, f / 3, a) * i * p5.width * 0.5
-        let y = p5.noise(f / 2, i, a) * i * p5.width * 0.5
+        const x = p5.noise(i - f, f / 3, a) * i * p5.width * 0.5
+        const y = p5.noise(f / 2, i, a) * i * p5.width * 0.5
         if (theme === "dark") {
           p5.stroke(255, 180 * (1 - i))
         } else {

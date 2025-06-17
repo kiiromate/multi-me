@@ -1,6 +1,8 @@
 import { ProjectCard } from "./project-card"
-import { BlogCard } from "./blog-card"
+import { BlogPostCard } from "./blog-card"
 import { ContentGrid } from "./content-grid"
+import { samplePosts } from "../data/blogPosts"
+import { motion } from "framer-motion"
 
 // Sample data
 const sampleProjects = [
@@ -126,7 +128,7 @@ export default function CardsShowcase() {
 
           <ContentGrid variant="blog">
             {sampleBlogPosts.map((post) => (
-              <BlogCard key={post.slug} {...post} />
+              <BlogPostCard key={post.slug} {...post} />
             ))}
           </ContentGrid>
         </section>

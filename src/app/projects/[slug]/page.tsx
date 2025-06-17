@@ -1,15 +1,25 @@
-import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
+import { notFound } from "next/navigation";
 import GlassContainer from "@/components/GlassContainer";
 import Image from "next/image";
 
 interface ProjectDetailPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
-  const project = projects.find((p) => p.slug === params.slug);
-  if (!project) return notFound();
+export async function generateStaticParams() {
+  // Return empty array for now - can be populated with Sanity data later
+  return []
+}
+
+export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
+  const { slug } = await params;
+  
+  const project = projects.find((p) => p.slug === slug);
+
+  if (!project) {
+    notFound();
+  }
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-8 pt-24">

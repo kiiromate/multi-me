@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { useTheme } from "./ThemeProvider";
+import React, { useRef, useEffect } from "react";
+import { useTheme } from "./theme-provider";
 import p5Types from "p5";
 
 export default function SpiralBackgroundAnimation() {

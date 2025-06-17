@@ -6,7 +6,7 @@ import { Header } from "./header";
 import { SkipNav } from "./skip-nav";
 import { Footer } from "./footer";
 import { GlassCard } from "./glass-card";
-import { MarkdownWrapper } from "./MarkdownWrapper";
+import MarkdownWrapper from "./MarkdownWrapper";
 import { ScrollAnimation } from "./scroll-animations";
 
 // Create a client component wrapper for the animation
@@ -17,28 +17,27 @@ export default function AboutClient() {
     <>
       <SkipNav />
       <Header />
-      <AnimationWrapper />
-      <main id="main" className="min-h-screen py-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <ScrollAnimation>
-            <h1 className="font-inter font-bold text-5xl md:text-6xl text-text-primary mb-6 tracking-tighter">
-              About <span className="text-accent-honey">Me</span>
-            </h1>
-            <p className="font-manrope text-xl text-text-secondary max-w-2xl mb-12">
-              Learn more about my background, skills, and approach to creative technology.
-            </p>
-          </ScrollAnimation>
-          
-          <ScrollAnimation delay={0.3}>
-            <GlassCard className="p-8">
-              <div className="prose prose-lg dark:prose-invert max-w-none">
-                <MarkdownWrapper content={aboutMe.bio} />
-              </div>
-            </GlassCard>
-          </ScrollAnimation>
+      <main className="min-h-screen bg-bg-primary text-text-primary">
+        <AnimationWrapper />
+        <div className="relative z-10 max-w-4xl mx-auto px-6 py-24">
+          <div className="space-y-12">
+            <ScrollAnimation delay={0.1}>
+              <h1 className="text-4xl md:text-6xl font-inter font-bold text-text-primary">
+                About
+              </h1>
+            </ScrollAnimation>
+
+            <ScrollAnimation delay={0.3}>
+              <GlassCard className="p-8">
+                <div className="prose prose-lg dark:prose-invert max-w-none">
+                  <MarkdownWrapper content={aboutMe.bio} />
+                </div>
+              </GlassCard>
+            </ScrollAnimation>
+          </div>
         </div>
       </main>
       <Footer />
     </>
-  );
+  )
 }
