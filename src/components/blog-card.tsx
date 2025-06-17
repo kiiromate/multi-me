@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Calendar, Clock, User } from "lucide-react"
+import { Calendar, Clock } from "lucide-react"
 import { GlassCard } from "./glass-card"
 import { Badge } from "@/components/ui/badge"
 import { BlogPost } from "@/data/blogPosts"

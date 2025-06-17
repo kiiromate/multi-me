@@ -19,8 +19,40 @@ import {
 import { useTheme } from "../theme-provider"
 import { Download } from "lucide-react"
 
+// Types for chart data
+interface BarChartData {
+  name: string
+  value: number
+  category: string
+}
+
+interface LineChartData {
+  name: string
+  users: number
+  sessions: number
+}
+
+interface PieChartData {
+  name: string
+  value: number
+  color: string
+}
+
+interface TooltipPayload {
+  name: string
+  value: number
+  color: string
+}
+
+interface CustomTooltipProps {
+  active?: boolean
+  payload?: TooltipPayload[]
+  label?: string
+  theme: string
+}
+
 // Sample data for demonstrations
-const sampleBarData = [
+const sampleBarData: BarChartData[] = [
   { name: 'Jan', value: 400, category: 'A' },
   { name: 'Feb', value: 300, category: 'B' },
   { name: 'Mar', value: 600, category: 'A' },
@@ -28,21 +60,21 @@ const sampleBarData = [
   { name: 'May', value: 500, category: 'A' },
 ]
 
-const sampleLineData = [
+const sampleLineData: LineChartData[] = [
   { name: 'Week 1', users: 400, sessions: 240 },
   { name: 'Week 2', users: 300, sessions: 139 },
   { name: 'Week 3', users: 600, sessions: 980 },
   { name: 'Week 4', users: 800, sessions: 390 },
 ]
 
-const samplePieData = [
+const samplePieData: PieChartData[] = [
   { name: 'Desktop', value: 45, color: '#EBA937' },
   { name: 'Mobile', value: 35, color: '#6B7280' },
   { name: 'Tablet', value: 20, color: '#111827' },
 ]
 
 // Custom tooltip component
-function CustomTooltip({ active, payload, label, theme }: any) {
+function CustomTooltip({ active, payload, label, theme }: CustomTooltipProps) {
   if (active && payload && payload.length) {
     return (
       <div className={`
@@ -53,7 +85,7 @@ function CustomTooltip({ active, payload, label, theme }: any) {
         }
       `}>
         <p className="font-medium mb-1">{label}</p>
-        {payload.map((entry: any, index: number) => (
+        {payload.map((entry, index) => (
           <p key={index} style={{ color: entry.color }} className="text-sm">
             {entry.name}: {entry.value}
           </p>
@@ -65,7 +97,7 @@ function CustomTooltip({ active, payload, label, theme }: any) {
 }
 
 // Interactive Bar Chart
-export function InteractiveBarChart({ data = sampleBarData }: { data?: any[] }) {
+export function InteractiveBarChart({ data = sampleBarData }: { data?: BarChartData[] }) {
   const { theme } = useTheme()
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
@@ -114,7 +146,7 @@ export function InteractiveBarChart({ data = sampleBarData }: { data?: any[] }) 
 }
 
 // Interactive Line Chart
-export function InteractiveLineChart({ data = sampleLineData }: { data?: any[] }) {
+export function InteractiveLineChart({ data = sampleLineData }: { data?: LineChartData[] }) {
   const { theme } = useTheme()
   const [activeDataKey, setActiveDataKey] = useState<string | null>(null)
 
@@ -169,7 +201,7 @@ export function InteractiveLineChart({ data = sampleLineData }: { data?: any[] }
 }
 
 // Interactive Pie Chart
-export function InteractivePieChart({ data = samplePieData }: { data?: any[] }) {
+export function InteractivePieChart({ data = samplePieData }: { data?: PieChartData[] }) {
   const { theme } = useTheme()
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 

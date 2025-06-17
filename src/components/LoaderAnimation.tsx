@@ -1,14 +1,15 @@
 "use client";
 import { useEffect, useRef } from "react";
-import p5Types from "p5";
+import p5 from "p5";
+import type p5Types from "p5";
 
 export default function LoaderAnimation() {
   const sketchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const p5 = require("p5");
     const sketch = (s: p5Types) => {
-      let n = 36, t = 0;
+      const n = 36;
+      let t = 0;
       s.setup = () => {
         const canvas = s.createCanvas(300, 300);
         if (sketchRef.current) {

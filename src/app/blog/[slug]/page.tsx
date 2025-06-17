@@ -4,9 +4,6 @@ import { blogPosts } from "@/data/blogPosts";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import React from "react";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import { SkipNav } from "@/components/skip-nav";
 
 // Server-side dynamic import without ssr: false
 const MarkdownWrapper = dynamic(() => import("@/components/MarkdownWrapper"));

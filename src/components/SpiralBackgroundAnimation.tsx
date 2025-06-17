@@ -1,7 +1,8 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import { useTheme } from "./theme-provider";
-import p5Types from "p5";
+import p5 from "p5";
+import type p5Types from "p5";
 
 export default function SpiralBackgroundAnimation() {
   const sketchRef = useRef<HTMLDivElement>(null);
@@ -9,7 +10,6 @@ export default function SpiralBackgroundAnimation() {
   const isDark = theme === "dark";
 
   useEffect(() => {
-    const p5 = require("p5");
     const sketch = (s: p5Types) => {
       let f = 0;
       s.setup = () => {
@@ -20,7 +20,11 @@ export default function SpiralBackgroundAnimation() {
         s.frameRate(30);
       };
       s.draw = () => {
-        isDark ? s.fill(0, 20) : s.fill(255, 20);
+        if (isDark) {
+          s.fill(0, 20);
+        } else {
+          s.fill(255, 20);
+        }
         s.noStroke();
         s.rect(0, 0, s.width, s.height);
         s.translate(s.width / 2, s.height / 2);
@@ -30,9 +34,11 @@ export default function SpiralBackgroundAnimation() {
           for (let i = 1; i > 0; i -= 0.005) {
             const x = s.noise(i - f, f / 3, a) * i * s.width;
             const y = s.noise(f / 2, i, a) * i * s.width;
-            isDark
-              ? s.stroke(255, 180 * (1 - i))
-              : s.stroke(0, 180 * i);
+            if (isDark) {
+              s.stroke(255, 180 * (1 - i));
+            } else {
+              s.stroke(0, 180 * i);
+            }
             s.point(x, y);
           }
           s.pop();

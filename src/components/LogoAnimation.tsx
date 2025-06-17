@@ -1,7 +1,8 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import { useTheme } from "./theme-provider";
-import p5Types from "p5";
+import p5 from "p5";
+import type p5Types from "p5";
 
 export default function LogoAnimation() {
   const sketchRef = useRef<HTMLDivElement>(null);
@@ -9,7 +10,6 @@ export default function LogoAnimation() {
   const isBlackOnWhite = theme === "light";
 
   useEffect(() => {
-    const p5 = require("p5");
     const sketch = (s: p5Types) => {
       s.setup = () => {
         const canvas = s.createCanvas(400, 400);
