@@ -1,29 +1,16 @@
-import { StructureResolver } from 'sanity/desk'
+import { type StructureResolver } from 'sanity/desk'
 
-// @ts-ignore - Using any type for Sanity structure
-export const structure: StructureResolver = (S) =>
+export const structure: StructureResolver = (S: any) =>
   S.list()
     .title('Content')
     .items([
       S.listItem()
         .title('Posts')
-        .child(
-          S.documentList()
-            .title('Posts')
-            .filter('_type == "post"')
-        ),
+        .child(S.documentTypeList('post').title('Posts')),
       S.listItem()
         .title('Projects')
-        .child(
-          S.documentList()
-            .title('Projects')
-            .filter('_type == "project"')
-        ),
+        .child(S.documentTypeList('project').title('Projects')),
       S.listItem()
         .title('Site Settings')
-        .child(
-          S.documentList()
-            .title('Site Settings')
-            .filter('_type == "siteSettings"')
-        ),
+        .child(S.editor().id('siteSettings').schemaType('siteSettings')),
     ])

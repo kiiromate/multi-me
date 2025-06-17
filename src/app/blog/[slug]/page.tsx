@@ -4,16 +4,26 @@ import { blogPosts } from "@/data/blogPosts";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import React from "react";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { SkipNav } from "@/components/skip-nav";
 
-// Create a client component wrapper for the markdown renderer
-const MarkdownWrapper = dynamic(() => import("@/components/MarkdownWrapper"), { ssr: false });
+// Server-side dynamic import without ssr: false
+const MarkdownWrapper = dynamic(() => import("@/components/MarkdownWrapper"));
 
 interface BlogPostDetailPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-export default function BlogPostDetailPage({ params }: BlogPostDetailPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+export async function generateStaticParams() {
+  // Return empty array for now - can be populated with Sanity data later
+  return []
+}
+
+export default async function BlogPostDetailPage({ params }: BlogPostDetailPageProps) {
+  const { slug } = await params;
+
+  const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
     notFound();
