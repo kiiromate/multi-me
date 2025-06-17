@@ -1,7 +1,7 @@
 "use client"
 import dynamic from "next/dynamic"
 import { useTheme } from "./theme-provider"
-import React, { useRef, useEffect } from "react"
+import React from "react"
 
 const Sketch = dynamic(() => import("react-p5").then(mod => mod.default), { ssr: false })
 
@@ -9,6 +9,7 @@ export default function HeroGenerativeArt() {
   const { theme } = useTheme()
 
   // Spiral animation inspired by user p5.js code
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setup = (p5: any, canvasParentRef: any) => {
     p5.createCanvas(p5.windowWidth, 400).parent(canvasParentRef)
     p5.frameRate(30)
@@ -16,6 +17,7 @@ export default function HeroGenerativeArt() {
   }
 
   let f = 0
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const draw = (p5: any) => {
     if (theme === "dark") {
       p5.fill(0, 20)
@@ -43,6 +45,7 @@ export default function HeroGenerativeArt() {
     f += 0.01
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const windowResized = (p5: any) => {
     p5.resizeCanvas(p5.windowWidth, 400)
   }

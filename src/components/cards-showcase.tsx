@@ -1,8 +1,6 @@
 import { ProjectCard } from "./project-card"
 import { BlogPostCard } from "./blog-card"
 import { ContentGrid } from "./content-grid"
-import { samplePosts } from "../data/blogPosts"
-import { motion } from "framer-motion"
 
 // Sample data
 const sampleProjects = [
@@ -84,7 +82,7 @@ const sampleBlogPosts = [
   },
 ]
 
-export default function CardsShowcase() {
+export function CardsShowcase() {
   return (
     <div className="min-h-screen bg-bg-primary">
       {/* Header */}
