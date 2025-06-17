@@ -1,71 +1,96 @@
 "use client"
-import React, { useState } from "react"
+
+import { useState, useEffect } from "react"
+import { KazeLogo } from "./kaze-logo"
+import { Navigation } from "./navigation"
+import { MobileMenuTrigger } from "./mobile-menu-trigger"
+import { ThemeToggle } from "./theme-toggle"
 import Link from "next/link"
-import ThemeToggle from "./ThemeToggle"
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
-  // { href: "/about", label: "About" }, // Uncomment if About page is added
-]
+export function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
-export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  // Close mobile menu when clicking outside or on link
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+  }
 
   return (
-    <header className="w-full flex items-center justify-between py-4 px-6 sm:px-12 bg-background/80 backdrop-blur z-50 fixed top-0 left-0">
-      <Link href="/" className="text-xl font-bold tracking-tight text-accent">
-        Kaze
-      </Link>
-      <nav className="hidden md:flex gap-8 items-center">
-        {navLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="text-foreground hover:text-accent transition-colors font-medium"
-          >
-            {link.label}
-          </Link>
-        ))}
-        <ThemeToggle />
-      </nav>
-      {/* Hamburger for mobile */}
-      <button
-        className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none focus:ring-2 focus:ring-accent"
-        aria-label="Open menu"
-        onClick={() => setMenuOpen(true)}
+    <>
+      <header
+        className={`
+          sticky top-0 z-50 w-full
+          transition-all duration-300 ease-out
+          ${
+            isScrolled
+              ? "backdrop-blur-md bg-bg-primary/80 shadow-sm border-b border-text-secondary/10"
+              : "backdrop-blur-sm bg-bg-primary/60"
+          }
+        `}
       >
-        <span className="block w-6 h-0.5 bg-foreground mb-1"></span>
-        <span className="block w-6 h-0.5 bg-foreground mb-1"></span>
-        <span className="block w-6 h-0.5 bg-foreground"></span>
-      </button>
-      {/* Mobile overlay menu */}
-      {menuOpen && (
-        <div className="fixed inset-0 bg-background/95 backdrop-blur flex flex-col items-center justify-center z-50 transition-all">
-          <button
-            className="absolute top-6 right-6 p-2 rounded focus:outline-none focus:ring-2 focus:ring-accent"
-            aria-label="Close menu"
-            onClick={() => setMenuOpen(false)}
-          >
-            <span className="block w-6 h-0.5 bg-foreground rotate-45 translate-y-1.5"></span>
-            <span className="block w-6 h-0.5 bg-foreground -rotate-45 -translate-y-1.5"></span>
-          </button>
-          <nav className="flex flex-col gap-8 items-center">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-2xl font-bold text-foreground hover:text-accent transition-colors"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <ThemeToggle />
-          </nav>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <Link
+              href="/"
+              className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-accent-honey focus:ring-offset-2 focus:ring-offset-bg-primary rounded-lg"
+              aria-label="KAZE - Home"
+            >
+              <KazeLogo className="w-8 h-8 text-text-primary group-hover:text-accent-honey transition-colors duration-200" />
+              <span className="font-inter font-bold text-xl text-text-primary group-hover:text-accent-honey transition-colors duration-200">
+                KAZE
+              </span>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <Navigation />
+              <div className="w-px h-6 bg-text-secondary/20" />
+              <ThemeToggle />
+            </div>
+
+            {/* Mobile Menu Trigger */}
+            <div className="md:hidden flex items-center space-x-4">
+              <ThemeToggle />
+              <MobileMenuTrigger isOpen={isMobileMenuOpen} onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
+            </div>
+          </div>
         </div>
+
+        {/* Mobile Navigation Overlay */}
+        <div
+          className={`
+            md:hidden absolute top-full left-0 w-full
+            backdrop-blur-md bg-bg-primary/95 border-b border-text-secondary/10
+            transition-all duration-300 ease-out
+            ${isMobileMenuOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-4 invisible"}
+          `}
+        >
+          <div className="px-6 py-6">
+            <Navigation className="mobile-nav" onItemClick={closeMobileMenu} />
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Menu Backdrop */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-text-primary/20 backdrop-blur-sm z-40 md:hidden"
+          onClick={closeMobileMenu}
+          aria-hidden="true"
+        />
       )}
-    </header>
+    </>
   )
-} 
+}
